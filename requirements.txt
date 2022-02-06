@@ -4,4 +4,3 @@ fastapi
 python-multipart
 jinja2
 numpy
-torch
