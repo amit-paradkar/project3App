@@ -18,7 +18,7 @@ import io as StringIO
 from io import BytesIO
 import json
 import os
-import torch
+#import torch
 
 app = FastAPI()
 
@@ -71,12 +71,13 @@ def get_predection(image,net,LABELS,COLORS):
     net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
     # determine only the *output* layer names that we need from YOLO
     ln = net.getLayerNames()
-    
+    '''
     if (torch.cuda.is_available()):
         ln = [ln[i[0] - 1] for i in net.getUnconnectedOutLayers()]
     else:
         ln = [ln[i - 1] for i in net.getUnconnectedOutLayers()]
-
+    '''
+    ln = [ln[i - 1] for i in net.getUnconnectedOutLayers()]
     # construct a blob from the input image and then perform a forward
     # pass of the YOLO object detector, giving us our bounding boxes and
     # associated probabilities
